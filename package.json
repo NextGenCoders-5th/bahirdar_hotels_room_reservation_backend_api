@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
-    "build": "yarn install && npx tsc"
+    "build": "tsc"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -27,7 +27,7 @@
     "slugify": "^1.6.6",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
-    "typescript": "^5.7.3",
+    "typescript": "^5.8.3",
     "validator": "^13.12.0",
     "zod": "^3.24.1"
   },

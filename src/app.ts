@@ -23,6 +23,7 @@ export function createApp() {
     cors({
       origin: [
         'https://hotel-booking-app-frontend-seven.vercel.app',
+        'https://hetelify-git-main-eziras-projects.vercel.app',
         'http://localhost:5173',
         'http://localhost:8081',
       ],

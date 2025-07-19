@@ -46,8 +46,6 @@ export async function protectRoutes(
 
     req.user = currentUser;
     // GRANT ACCESS TO PROTECTED ROUTE
-    console.log('currentUser', currentUser);
-    console.log('GRANT ACCESS TO PROTECTED ROUTE...');
     next();
   } catch (err) {
     res.status(500).json({

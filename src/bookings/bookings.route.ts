@@ -40,8 +40,7 @@ router.get(
   (req, res) => bookingsController.getAllBookingsOfAHotel(req, res)
 );
 // get all bookings of a user
-router.get(
-  '/all-bookings-of-a-user/:userId',
+router.get('/all-bookings-of-a-user/:userId',
   authController.restrictTo(UserRole.USER, UserRole.ADMIN),
   (req, res) => bookingsController.getAllBookingsOfAUser(req, res)
 );
