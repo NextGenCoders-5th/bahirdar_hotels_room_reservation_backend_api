@@ -18,6 +18,10 @@ import { cancelMyBookingProvider } from './providers/cancel-my-booking.provider'
 import { confirmUserBookingProvider } from './providers/confirm-user-booking.provider';
 import { checkinUserBookingProvider } from './providers/checkin-user-booking.provider';
 import { checkoutUserBookingProvider } from './providers/checkout-user-booking.provider';
+import HotelModel from '../hotels/hotels.model';
+import { MessageRoom } from '../messages/model/message.model';
+import { UserRole } from '../users/enums/user-role.enum';
+import UserModel from '../users/users.model';
 
 export class BookingsController {
   constructor(
@@ -127,6 +131,32 @@ export class BookingsController {
         ...createBookingDto,
         hotel: room.hotel,
       });
+
+      const hotel = await HotelModel.findById(room.hotel);
+      if (!hotel) {
+        res.status(404).json({
+          status: 'error',
+          message: 'Hotel not found',
+        });
+        return;
+      }
+
+      // Create Chat Room
+      const cashers  = await UserModel.find({
+        hotel: hotel._id,
+        role: UserRole.CASHIER,
+      });
+      await MessageRoom.create({
+        roomId: ` ${hotel.name}`,
+        hotelId: hotel._id,
+        users: [user._id, ...cashers.map((cashier) => cashier._id)],
+        messages: [],
+      });
+
+
+
+
+      
 
       res.status(201).json({
         status: 'success',

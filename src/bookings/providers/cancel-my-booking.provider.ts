@@ -6,7 +6,7 @@ import { BookingStatus } from '../enums/booking-status.enum';
 export async function cancelMyBookingProvider(req: Request, res: Response) {
   console.log('cancel-my-booking.provider...');
   try {
-    const { bookingId } = req.params;
+    const { bookingId } = req.query as { bookingId: string };
     const booking = (await BookingModel.findById(bookingId)) as IBooking;
 
     if (!booking) {
