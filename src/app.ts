@@ -15,6 +15,7 @@ import { statRoutes } from './stats/stats.route';
 import { recommendationRoutes } from './recommendations/recommendations.route';
 import swaggerDocs from './swagger';
 import { envConfig } from './lib/config/environment.config';
+import { messageRouter } from './messages/message.route';
 
 export function createApp() {
   const app = express();
@@ -53,6 +54,7 @@ export function createApp() {
   app.use('/api/v1/favorites', favoritesRoutes);
   app.use('/api/v1/payments', paymentRoutes);
   app.use('/api/v1/stats', statRoutes);
+  app.use('/api/v1/messages', messageRouter);
   app.use('/api/v1/recommendations', recommendationRoutes);
 
   swaggerDocs(app, envConfig.PORT);
